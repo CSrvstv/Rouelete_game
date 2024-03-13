@@ -1,8 +1,12 @@
 import React from 'react'
+import { Link } from "react-router-dom";
+
+
 
 export default function Start() {
   return (
-    <button onClick={()=>{}}>START</button>
-    
+    <Link to="/Game">
+    <button>START</button>
+    </Link>
   )
 }
