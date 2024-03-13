@@ -2,6 +2,9 @@ import React from 'react'
 
 export default function Game() {
   return (
-    <div>Main Game</div>
+    <>
+    <div>Sample branch Game</div>
+    <div>hello</div>
+    </>
   )
 }
