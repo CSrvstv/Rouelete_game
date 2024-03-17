@@ -1,0 +1,27 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.startButton {
+  padding: 20px 40px;
+  margin: 100px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 60px;
+  background: hsl(351, 91%, 31%);
+  border-radius: 12px;
+  text-align: center;
+}
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
+
+body {
+  /* background: linear-gradient(to top, hsl(352, 29%, 81%), #aa7a0a); */
+  height: 100vh;
+  width: 100vw;
+}
