@@ -1,18 +1,70 @@
 .nav_elements {
   border: 2px solid black;
   display: flex;
-  align-items: left;
   justify-content: space-between;
+  padding: 1vw 1vw;
 }
 .left_elements {
   display: flex;
-  align-items: left;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .sub_left_ele {
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
+  grid-row: 1;
 }
 .right_elements {
-  font-size: 20px;
-  align-items: end;
+  align-items: center;
+  margin-bottom: 2vh;
+}
+.sub_right_ele {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.main_footer {
+  border: 2px solid black;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0.5vw;
+  align-items: center;
+  text-align: center;
+}
+.sub_footer {
+  border: 2px solid black;
+  position: absolute;
+  right: 0;
+  bottom: 4vh;
+  left: 0;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+.bet_amt,
+p {
+  /* border: 2px solid black; */
+  margin: 1vw 1vw 1vw 1vw;
+  display: flex;
+  flex-direction: row;
+}
+.chips,
+.cimg {
+  /* border: 2px solid black; */
+  transition: box-shadow 0s, border-radius 0s;
+  margin: 1vw 1vw 1vw 1vw;
+  display: flex;
+  flex-direction: row;
+}
+.cimg:hover {
+  box-shadow: 0 5px 20px rgb(91, 215, 226);
+  border-radius: 50%;
+}
+.image {
+  width: 2vw;
+  height: 2vh;
+  margin: 0;
 }
