@@ -1,5 +1,4 @@
 .nav_elements {
-  border: 2px solid black;
   display: flex;
   justify-content: space-between;
   padding: 1vw 1vw;
@@ -7,16 +6,13 @@
 .left_elements {
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
 }
 .sub_left_ele {
   display: flex;
   flex-direction: column;
-  grid-row: 1;
 }
 .right_elements {
-  align-items: center;
   margin-bottom: 2vh;
 }
 .sub_right_ele {
@@ -25,7 +21,6 @@
   justify-content: space-evenly;
 }
 .main_footer {
-  border: 2px solid black;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -35,14 +30,14 @@
   text-align: center;
 }
 .sub_footer {
-  border: 2px solid black;
+  /* border: 2px solid black; */
   position: absolute;
   right: 0;
   bottom: 4vh;
   left: 0;
   align-items: center;
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 .bet_amt,
 p {
@@ -53,18 +48,34 @@ p {
 }
 .chips,
 .cimg {
-  /* border: 2px solid black; */
-  transition: box-shadow 0s, border-radius 0s;
-  margin: 1vw 1vw 1vw 1vw;
+  margin: 10px;
   display: flex;
   flex-direction: row;
 }
 .cimg:hover {
-  box-shadow: 0 5px 20px rgb(91, 215, 226);
+  box-shadow: 0 0px 20px rgb(91, 215, 226);
   border-radius: 50%;
 }
 .image {
-  width: 2vw;
-  height: 2vh;
-  margin: 0;
+  padding: 8px;
+  margin: 8px;
+  border: 2px solid grey;
+  border-radius: 50%;
+}
+.highlight {
+  border: 4px solid white;
+  border-radius: 50%;
+}
+.text {
+  padding: 8px;
+  background-color: antiquewhite;
+  border-radius: 7px;
+  border: 2px solid rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  width: 20vw;
+  height: 20px;
+}
+.text:hover {
+  background-color: #253f49;
+  border: 2px solid rgb(153, 117, 18);
 }

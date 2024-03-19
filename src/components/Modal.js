@@ -1,27 +1,39 @@
-import React from 'react'
-import { useSearchParams} from 'react-router-dom'
-import { useState } from 'react';
-import './Modal.module.css';
+import React from "react";
+import { useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import style from "./Modal.module.css";
+import x from "../images/x.svg";
 
 export default function Modal() {
-    const [modal,setModal] = useState(false);
+  const [modal, setModal] = useState(false);
 
-    const toggleModal = () => {
+  const toggleModal = () => {
     setModal(!modal);
   };
   return (
-     <>
-      <button onClick={toggleModal} className="lobby_heading">Lobby</button>
+    <>
+      <button onClick={toggleModal} className={style.lobby_heading}>
+        <b>Lobby</b>
+      </button>
 
       {modal && (
-        <div className="lobby">
-          <div onClick={toggleModal} className='lobby_in'></div>
-          <button className="close_lobby" onClick={toggleModal}>X</button>
-          <div className='lobby_content'>
-            <h2>Lobby</h2>
+        <div className={style.lobby}>
+          <div onClick={toggleModal}></div>
+
+          <div className={style.lobby_content}>
+            <div className={style.lobby_in}>
+              <img
+                onClick={toggleModal}
+                className={style.close_lobby}
+                src={x}
+              ></img>
+
+              <h4>Lobby</h4>
+            </div>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
           </div>
-        </div>)}
+        </div>
+      )}
     </>
-  )
+  );
 }

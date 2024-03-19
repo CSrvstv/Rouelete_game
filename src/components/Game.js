@@ -19,10 +19,21 @@ export default function Game() {
   const renderChips = useCallback(() => {
     return chipsarr.map((chip, index) => (
       <div key={index} className={style.cimg}>
-        <img alt="" src={chip.img}></img>
+        <div>
+          <img alt="" src={chip.img}></img>
+        </div>
       </div>
     ));
   }, [chipsarr]);
+
+  // const selectchip = document.querySelectorAll(".highlight");
+
+  // selectchip.forEach((schip) => {
+  //   schip.addEventListener("click", () => {
+  //     document.querySelector(".highlight")?.classList.remove(".highlight");
+  //     schip.classList.add(".highlight");
+  //   });
+  // });
 
   return (
     <>
@@ -43,7 +54,11 @@ export default function Game() {
               <Modal />
               <Modal />
             </div>
-            <input type="text" placeholder="Type a message here..."></input>
+            <input
+              type="text"
+              placeholder="Type a message here..."
+              className={style.text}
+            ></input>
           </div>
         </div>
       </nav>
@@ -51,9 +66,10 @@ export default function Game() {
         <div className={style.sub_footer}>
           <div className={style.bet_amt}>
             <p>Balance: $5000</p>
-            <p>Total Bet: &xxxxx</p>
+            <p>Total Bet: $xxxxx</p>
           </div>
           <div className={style.chips}>{renderChips()}</div>
+          <div></div>
         </div>
         <div className={style.main_footer}>Recent Results</div>
       </div>
