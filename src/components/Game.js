@@ -5,35 +5,55 @@ import style from "./Game.module.css";
 import Modal from "./Modal";
 import x from "../images/x.svg";
 import { chipsarr } from "./Chiparr_constant.js";
+import { UseSelector, useDispatch, useSelector } from "react-redux";
+import { setchip } from "../store/slices/ChipSelect.js";
 
 export default function Game() {
   let t = new Date().toLocaleTimeString();
+  const selectedChip = useSelector((state) => {
+    return state.selectedChip;
+  });
+  // const handleSelectedChip = useCallback(
+  //   (chipimg) => {
+  //     console.log("Selected Chip:", chipimg);
+  //     dispatch(setchip(chipimg));
+  //   },
+  //   [selectedChip]
+  // );
+
+  const handleSelectedChip = (chipimg) => {
+    // console.log(chipimg);
+    dispatch(setchip(chipimg));
+    // console.log(selectedChip);
+  };
+  const dispatch = useDispatch();
   const [time, setTime] = useState(t);
   useEffect(() => {
-    const set = setInterval(() => {
-      setTime(new Date().toLocaleTimeString());
-      console.log(time);
-    }, 1000);
-    return () => clearInterval(set);
+    // const set = setInterval(() => {
+    //   setTime(new Date().toLocaleTimeString());
+    //   console.log(time);
+    // }, 1000);
+    // return () => clearInterval(set);
   }, []);
   const renderChips = useCallback(() => {
     return chipsarr.map((chip, index) => (
-      <div key={index} className={style.cimg}>
-        <div>
+      <div
+        key={index}
+        className={style.cimg}
+        onClick={() => {
+          handleSelectedChip(chip.img);
+        }}
+      >
+        <div
+          className={`${
+            selectedChip == chip.img ? console.log("hello") : console.log("hi")
+          }`}
+        >
           <img alt="" src={chip.img}></img>
         </div>
       </div>
     ));
   }, [chipsarr]);
-
-  // const selectchip = document.querySelectorAll(".highlight");
-
-  // selectchip.forEach((schip) => {
-  //   schip.addEventListener("click", () => {
-  //     document.querySelector(".highlight")?.classList.remove(".highlight");
-  //     schip.classList.add(".highlight");
-  //   });
-  // });
 
   return (
     <>
