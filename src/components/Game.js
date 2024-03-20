@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { useState, useEffect, useCallback } from "react";
 import style from "./Game.module.css";
 import Modal from "./Modal";
 import x from "../images/x.svg";
 import { chipsarr } from "./Chiparr_constant.js";
-import { UseSelector, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setchip } from "../store/slices/ChipSelect.js";
 
 export default function Game() {
-  let t = new Date().toLocaleTimeString();
   const selectedChip = useSelector((state) => {
     return state.selectedChip;
   });
@@ -20,20 +18,20 @@ export default function Game() {
   //   },
   //   [selectedChip]
   // );
+  const dispatch = useDispatch();
 
   const handleSelectedChip = (chipimg) => {
-    // console.log(chipimg);
+    console.log(chipimg);
     dispatch(setchip(chipimg));
-    // console.log(selectedChip);
+    console.log(selectedChip);
   };
-  const dispatch = useDispatch();
-  const [time, setTime] = useState(t);
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
   useEffect(() => {
-    // const set = setInterval(() => {
-    //   setTime(new Date().toLocaleTimeString());
-    //   console.log(time);
-    // }, 1000);
-    // return () => clearInterval(set);
+    const set = setInterval(() => {
+      setTime(new Date().toLocaleTimeString());
+      console.log(time);
+    }, 1000);
+    return () => clearInterval(set);
   }, []);
   const renderChips = useCallback(() => {
     return chipsarr.map((chip, index) => (
@@ -41,19 +39,16 @@ export default function Game() {
         key={index}
         className={style.cimg}
         onClick={() => {
+          console.log("click");
           handleSelectedChip(chip.img);
         }}
       >
-        <div
-          className={`${
-            selectedChip == chip.img ? console.log("hello") : console.log("hi")
-          }`}
-        >
-          <img alt="" src={chip.img}></img>
+        <div className={`${selectedChip == chip.img ? style.highlight : ""}`}>
+          <img alt="" src={chip.img} />
         </div>
       </div>
     ));
-  }, [chipsarr]);
+  }, [chipsarr, selectedChip]);
 
   return (
     <>
