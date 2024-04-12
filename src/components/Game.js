@@ -6,18 +6,12 @@ import x from "../images/x.svg";
 import { chipsarr } from "./Chiparr_constant.js";
 import { useDispatch, useSelector } from "react-redux";
 import { setchip } from "../store/slices/ChipSelect.js";
+import { betarray } from "./BetTable.js";
 
 export default function Game() {
   const selectedChip = useSelector((state) => {
     return state.selectedChip;
   });
-  // const handleSelectedChip = useCallback(
-  //   (chipimg) => {
-  //     console.log("Selected Chip:", chipimg);
-  //     dispatch(setchip(chipimg));
-  //   },
-  //   [selectedChip]
-  // );
   const dispatch = useDispatch();
 
   const handleSelectedChip = (chipimg) => {
@@ -43,7 +37,7 @@ export default function Game() {
           handleSelectedChip(chip.img);
         }}
       >
-        <div className={`${selectedChip == chip.img ? style.highlight : ""}`}>
+        <div className={`${selectedChip === chip.img ? style.highlight : ""}`}>
           <img alt="" src={chip.img} />
         </div>
       </div>
@@ -77,6 +71,65 @@ export default function Game() {
           </div>
         </div>
       </nav>
+      {/* /* <div className={style.gridbase}>
+        <div className={style.gridno1}>0</div>
+        <div className={style.gridno}>1</div>
+        <div className={style.gridno}>2</div>
+        <div className={style.gridno}>3</div>
+        <div className={style.gridno}>4</div>
+        <div className={style.gridno}>5</div>
+        <div className={style.gridno}>6</div>
+        <div className={style.gridno}>7</div>
+        <div className={style.gridno}>8</div>
+        <div className={style.gridno}>9</div>
+        <div className={style.gridno}>10</div>
+        <div className={style.gridno}>11</div>
+        <div className={style.gridno}>12</div>
+        <div className={style.gridno2}>2:1</div>
+        <div className={style.gridno}>13</div>
+        <div className={style.gridno}>14</div>
+        <div className={style.gridno}>15</div>
+        <div className={style.gridno}>16</div>
+        <div className={style.gridno}>17</div>
+        <div className={style.gridno}>18</div>
+        <div className={style.gridno}>19</div>
+        <div className={style.gridno}>20</div>
+        <div className={style.gridno}>21</div>
+        <div className={style.gridno}>22</div>
+        <div className={style.gridno}>23</div>
+        <div className={style.gridno}>24</div>
+        <div className={style.gridno2}>2:1</div>
+        <div className={style.gridno}>25</div>
+        <div className={style.gridno}>26</div>
+        <div className={style.gridno}>27</div>
+        <div className={style.gridno}>28</div>
+        <div className={style.gridno}>29</div>
+        <div className={style.gridno}>30</div>
+        <div className={style.gridno}>31</div>
+        <div className={style.gridno}>32</div>
+        <div className={style.gridno}>33</div>
+        <div className={style.gridno}>34</div>
+        <div className={style.gridno}>35</div>
+        <div className={style.gridno}>36</div>
+        <div className={style.gridno2}>2:1</div>
+      </div> */}
+      <div className={style.gridbase}>
+        {betarray.map((obj, index) => {
+          return (
+            <div
+              className={`${style.gridno} ${
+                obj.color === "red"
+                  ? style.gridred
+                  : obj.color === "green"
+                  ? style.gridgreen
+                  : style.gridblack
+              }`}
+            >
+              <div className={style.container}>{obj.num}</div>
+            </div>
+          );
+        })}
+      </div>
       <div className={style.footer}>
         <div className={style.sub_footer}>
           <div className={style.bet_amt}>

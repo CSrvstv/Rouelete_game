@@ -1,3 +1,9 @@
+:root {
+  --gridgreen: #21a445;
+  --gridred: #941e1e;
+  --gridblack: #252228;
+  --gridtextcolor: #f5f5f5;
+}
 .nav_elements {
   display: flex;
   justify-content: space-between;
@@ -83,4 +89,54 @@ p {
 .text:hover {
   background-color: #253f49;
   border: 2px solid rgb(153, 117, 18);
+}
+.gridbase {
+  text-align: center;
+  height: 210px;
+  width: 660px;
+  display: grid;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  grid-template-columns: repeat(14, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  border-radius: 2px;
+  border: 3px solid rgb(153, 117, 18);
+  border-radius: 2px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid rgb(153, 117, 18);
+  border-radius: 2px;
+}
+.gridgreen,
+.gridred,
+.gridblack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(153, 117, 18);
+}
+.gridgreen {
+  grid-row-start: 1;
+  grid-row-end: 4;
+  color: var(--gridtextcolor);
+  text-align: center;
+  background-color: var(--gridgreen);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gridred {
+  background-color: var(--gridred);
+  color: var(--gridtextcolor);
+}
+.gridblack {
+  background-color: var(--gridblack);
+  color: var(--gridtextcolor);
 }
