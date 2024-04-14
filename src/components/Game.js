@@ -81,7 +81,9 @@ export default function Game() {
                   ? style.gridred
                   : obj.color === "green"
                   ? style.gridgreen
-                  : style.gridblack
+                  : obj.color === "black"
+                  ? style.gridblack
+                  : style.simple
               }`}
             >
               <div className={style.container}>{obj.num}</div>
@@ -102,7 +104,9 @@ export default function Game() {
                   ? style.b1gridblack
                   : obj.color === "b2black"
                   ? style.b2gridblack
-                  : style.b3gridblack
+                  : obj.color === "b3black"
+                  ? style.b3gridblack
+                  : style.simple
               }`}
             >
               <div className={style.container}>{obj.num}</div>
