@@ -23,7 +23,7 @@ export default function Game() {
   useEffect(() => {
     const set = setInterval(() => {
       setTime(new Date().toLocaleTimeString());
-      console.log(time);
+      // console.log(time);
     }, 1000);
     return () => clearInterval(set);
   }, []);
@@ -43,7 +43,9 @@ export default function Game() {
       </div>
     ));
   }, [chipsarr, selectedChip]);
-
+  const handleBetspotClick=()=>{
+    console.log("click");
+  }
   return (
     <>
       <nav className={style.navbar}>
@@ -75,7 +77,7 @@ export default function Game() {
       <div className={style.gridbase}>
         {betarray.map((obj, index) => {
           return (
-            <div
+            <div onClick={() => handleBetspotClick()}
               className={`${style.gridno} ${
                 obj.color === "red"
                   ? style.gridred
@@ -86,7 +88,7 @@ export default function Game() {
                   : style.simple
               }`}
             >
-              <div className={style.container}>{obj.num}</div>
+              <div  className={style.container}>{obj.num}</div>
             </div>
           );
         })}
