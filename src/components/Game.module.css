@@ -3,6 +3,7 @@
   --gridred: #941e1e;
   --gridblack: #252228;
   --gridtextcolor: #f5f5f5;
+  --bordercolor: #a27764;
 }
 .nav_elements {
   display: flex;
@@ -92,8 +93,11 @@ p {
 }
 .gridbase {
   text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
   height: 210px;
-  width: 660px;
+  width: 700px;
   display: grid;
   top: 50%;
   left: 50%;
@@ -101,16 +105,13 @@ p {
   position: absolute;
   grid-template-columns: repeat(14, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  border-radius: 2px;
-  border: 3px solid rgb(153, 117, 18);
-  border-radius: 2px;
+  border-radius: 5px;
+  border: 2px solid var(--bordercolor);
 }
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 3px solid rgb(153, 117, 18);
-  border-radius: 2px;
 }
 .gridgreen,
 .gridred,
@@ -118,7 +119,6 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgb(153, 117, 18);
 }
 .gridgreen {
   grid-row-start: 1;
@@ -135,8 +135,10 @@ p {
 .gridred {
   background-color: var(--gridred);
   color: var(--gridtextcolor);
+  border: 1px solid var(--bordercolor);
 }
 .gridblack {
   background-color: var(--gridblack);
   color: var(--gridtextcolor);
+  border: 1px solid var(--bordercolor);
 }
