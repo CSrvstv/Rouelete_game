@@ -115,10 +115,14 @@ p {
 }
 .gridgreen,
 .gridred,
-.gridblack {
+.gridblack,
+.b1gridblack,
+.b2gridblack,
+.b3gridblack {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid var(--bordercolor);
 }
 .gridgreen {
   grid-row-start: 1;
@@ -132,13 +136,45 @@ p {
   justify-content: center;
   align-items: center;
 }
-.gridred {
+.gridred,
+.bgridred {
   background-color: var(--gridred);
   color: var(--gridtextcolor);
   border: 1px solid var(--bordercolor);
 }
-.gridblack {
+.gridblack,
+.bgridblack {
   background-color: var(--gridblack);
   color: var(--gridtextcolor);
   border: 1px solid var(--bordercolor);
+}
+.bottomgrid {
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  height: 84px;
+  width: 600px;
+  display: grid;
+  top: 69%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  grid-template-columns: repeat(6, 100px);
+  grid-template-rows: repeat(2, 42px);
+  border-radius: 5px;
+  border: 2px solid var(--bordercolor);
+  grid-auto-flow: row;
+}
+.b1gridblack {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+.b2gridblack {
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+.b3gridblack {
+  grid-column-start: 5;
+  grid-column-end: 7;
 }
