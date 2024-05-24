@@ -13,6 +13,8 @@ export default function Game() {
     return state.selectedChip;
   });
   const dispatch = useDispatch();
+  //useEffect(() => {}, [betarray]);
+  //const [selectedBet, setSelectedBet] = useState(null);
 
   const handleSelectedChip = (chipimg) => {
     console.log(chipimg);
@@ -43,9 +45,13 @@ export default function Game() {
       </div>
     ));
   }, [chipsarr, selectedChip]);
-  const handleBetspotClick=()=>{
+  const handleBetspotClick = (index) => {
     console.log("click");
-  }
+    //const chipobj = chipsarr.find((c) => c.img === selectedChip);
+    const arrobj = betarray.find((ele) => ele.num === index);
+    arrobj.chip = selectedChip;
+    console.log(`!!!!!`, betarray);
+  };
   return (
     <>
       <nav className={style.navbar}>
@@ -77,7 +83,11 @@ export default function Game() {
       <div className={style.gridbase}>
         {betarray.map((obj, index) => {
           return (
-            <div onClick={() => handleBetspotClick()}
+            <div
+              key={index}
+              onClick={() =>
+                selectedChip !== null ? handleBetspotClick(obj.num) : ""
+              }
               className={`${style.gridno} ${
                 obj.color === "red"
                   ? style.gridred
@@ -88,7 +98,13 @@ export default function Game() {
                   : style.simple
               }`}
             >
-              <div  className={style.container}>{obj.num}</div>
+              {obj.chip == null ? (
+                obj.num
+              ) : (
+                <div className={style.container}>
+                  <img src={obj.chip} alt="Selected Chip" />
+                </div>
+              )}
             </div>
           );
         })}
@@ -97,6 +113,7 @@ export default function Game() {
         {subbetarray.map((obj, index) => {
           return (
             <div
+              key={index}
               className={`${style.gridno} ${
                 obj.color === "red"
                   ? style.gridred
