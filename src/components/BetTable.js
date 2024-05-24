@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 export const betarray = [
   { num: 0, color: "green", chip: null },
   { num: 3, color: "red", chip: null },
@@ -40,7 +40,7 @@ export const betarray = [
   { num: 31, color: "black", chip: null },
   { num: 34, color: "red", chip: null },
   { num: "1:2", color: "simple", chip: null },
-]
+];
 export const subbetarray = [
   { num: "1st 12", color: "b1black" },
   { num: "2nd 12", color: "b2black" },
@@ -51,4 +51,4 @@ export const subbetarray = [
   { num: "", color: "black" },
   { num: "Even", color: "simple" },
   { num: "19-36", color: "simple" },
-]
+];

@@ -103,6 +103,7 @@ p {
   position: absolute;
   border-radius: 5px;
   border: 2px solid var(--bordercolor);
+  cursor: pointer;
 }
 .gridbase {
   height: 210px;
@@ -115,6 +116,10 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.container img {
+  max-width: 45px;
+  max-height: 45px;
 }
 .gridgreen,
 .gridred,
