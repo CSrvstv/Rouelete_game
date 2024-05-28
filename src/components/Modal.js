@@ -4,7 +4,7 @@ import { useState } from "react";
 import style from "./Modal.module.css";
 import x from "../images/x.svg";
 
-export default function Modal() {
+export default function Modal(props) {
   const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
@@ -13,7 +13,7 @@ export default function Modal() {
   return (
     <>
       <button onClick={toggleModal} className={style.lobby_heading}>
-        <b>Lobby</b>
+        <b>{props.text}</b>
       </button>
 
       {modal && (
@@ -28,7 +28,7 @@ export default function Modal() {
                 src={x}
               ></img>
 
-              <h4>Lobby</h4>
+              <h4>{props.text}</h4>
             </div>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
           </div>

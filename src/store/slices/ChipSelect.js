@@ -5,7 +5,7 @@ import { chipsarr } from "../../components/Chiparr_constant";
 
 const chipselect = createSlice({
   name: "chipselect",
-  initialState: chipsarr[0].img,
+  initialState: chipsarr[0].index,
   reducers: {
     setchip(state, action) {
       //   console.log(action.payload);

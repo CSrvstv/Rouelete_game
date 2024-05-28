@@ -1,0 +1,5 @@
+.timer {
+  display: flex;
+  justify-content: center;
+  transition: all 0.7s ease;
+}

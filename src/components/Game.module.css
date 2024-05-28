@@ -120,6 +120,7 @@ p {
 .container img {
   max-width: 45px;
   max-height: 45px;
+  position: relative;
 }
 .gridgreen,
 .gridred,
@@ -177,4 +178,8 @@ p {
 .b3gridblack {
   grid-column-start: 5;
   grid-column-end: 7;
+}
+.value {
+  z-index: 2;
+  position: absolute;
 }

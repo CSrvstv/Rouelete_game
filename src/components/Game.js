@@ -6,51 +6,48 @@ import x from "../images/x.svg";
 import { chipsarr } from "./Chiparr_constant.js";
 import { useDispatch, useSelector } from "react-redux";
 import { setchip } from "../store/slices/ChipSelect.js";
-import { betarray, subbetarray } from "./BetTable.js";
-
+import { subbetarray } from "./BetTable.js";
+import { betPlace } from "../store/slices/BetArray.js";
+import Time from "./subcomponents/Time.js";
+import TimerBar from "./subcomponents/TimerBar.js";
 export default function Game() {
   const selectedChip = useSelector((state) => {
     return state.selectedChip;
   });
+  const betarray = useSelector((state) => {
+    return state.arrayBet;
+  });
+  const timer = useSelector((state) => {
+    return state.Tlimit;
+  });
   const dispatch = useDispatch();
-  //useEffect(() => {}, [betarray]);
-  //const [selectedBet, setSelectedBet] = useState(null);
-
-  const handleSelectedChip = (chipimg) => {
-    console.log(chipimg);
-    dispatch(setchip(chipimg));
-    console.log(selectedChip);
-  };
-  const [time, setTime] = useState(new Date().toLocaleTimeString());
   useEffect(() => {
-    const set = setInterval(() => {
-      setTime(new Date().toLocaleTimeString());
-      // console.log(time);
-    }, 1000);
-    return () => clearInterval(set);
-  }, []);
+    console.log(timer);
+  }, [betarray, timer]);
+  const handleSelectedChip = (chipindex) => {
+    dispatch(setchip(chipindex));
+  };
+  const time = <Time />;
   const renderChips = useCallback(() => {
     return chipsarr.map((chip, index) => (
       <div
         key={index}
         className={style.cimg}
         onClick={() => {
-          console.log("click");
-          handleSelectedChip(chip.img);
+          handleSelectedChip(chip.index);
         }}
       >
-        <div className={`${selectedChip === chip.img ? style.highlight : ""}`}>
+        <div
+          className={`${selectedChip === chip.index ? style.highlight : ""} 
+          }`}
+        >
           <img alt="" src={chip.img} />
         </div>
       </div>
     ));
   }, [chipsarr, selectedChip]);
   const handleBetspotClick = (index) => {
-    console.log("click");
-    //const chipobj = chipsarr.find((c) => c.img === selectedChip);
-    const arrobj = betarray.find((ele) => ele.num === index);
-    arrobj.chip = selectedChip;
-    console.log(`!!!!!`, betarray);
+    dispatch(betPlace({ num: index, index: selectedChip }));
   };
   return (
     <>
@@ -67,9 +64,9 @@ export default function Game() {
           </div>
           <div className={style.right_elements}>
             <div className={style.sub_right_ele}>
-              <Modal />
-              <Modal />
-              <Modal />
+              <Modal text="Lobby" />
+              <Modal text="History" />
+              <Modal text="How to Play" />
             </div>
             <input
               type="text"
@@ -79,14 +76,16 @@ export default function Game() {
           </div>
         </div>
       </nav>
-
+      <TimerBar />
       <div className={style.gridbase}>
         {betarray.map((obj, index) => {
           return (
             <div
               key={index}
               onClick={() =>
-                selectedChip !== null ? handleBetspotClick(obj.num) : ""
+                selectedChip !== null && timer != 0
+                  ? handleBetspotClick(obj.num)
+                  : ""
               }
               className={`${style.gridno} ${
                 obj.color === "red"
@@ -103,6 +102,7 @@ export default function Game() {
               ) : (
                 <div className={style.container}>
                   <img src={obj.chip} alt="Selected Chip" />
+                  <h6 className={style.value}>{obj.value}</h6>
                 </div>
               )}
             </div>
@@ -139,7 +139,7 @@ export default function Game() {
             <p>Balance: $5000</p>
             <p>Total Bet: $xxxx</p>
           </div>
-          <div className={style.chips}>{renderChips()}</div>
+          <div className={style.chips}>{timer != 0 ? renderChips() : ""}</div>
           <div></div>
         </div>
         <div className={style.main_footer}>Recent Results</div>
@@ -147,4 +147,5 @@ export default function Game() {
     </>
   );
 }
-// bet array
+// ==
+// === - matches string
