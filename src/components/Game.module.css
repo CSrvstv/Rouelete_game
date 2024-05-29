@@ -109,7 +109,7 @@ p {
   height: 210px;
   width: 700px;
   top: 50%;
-  grid-template-columns: repeat(14, 1fr);
+  grid-template-columns: repeat(13, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
 .container {

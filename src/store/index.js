@@ -4,6 +4,7 @@ import BetArray from "./slices/BetArray";
 import Timer from "./slices/Timer";
 import ChipBlock from "./slices/ChipBlock";
 import TimerMsg from "./slices/TimerMsg";
+import GridBet from "./slices/GridBet";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     Tlimit: Timer,
     chipBlock: ChipBlock,
     msg: TimerMsg,
+    arraybet: GridBet,
   },
 });
 
