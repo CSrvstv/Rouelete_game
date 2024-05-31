@@ -7,7 +7,6 @@ const GridBet = createSlice({
   reducers: {
     betPlace(state, action) {
       const { num, chip } = action.payload;
-      //   console.log(num);
       const chipObj = chipsarr.find((c) => c.index == chip);
       const it = state.findIndex((ele) => ele.num === num);
       if (it !== -1) {
@@ -15,10 +14,8 @@ const GridBet = createSlice({
         state[it].value += chipObj.value;
       } else {
         const betItem = { num: num, value: chipObj.value, chip: chipObj.img };
-
         state.push(betItem);
       }
-      //   console.log(betItem);
     },
   },
 });

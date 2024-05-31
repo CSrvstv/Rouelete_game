@@ -91,8 +91,7 @@ p {
   background-color: #253f49;
   border: 2px solid rgb(153, 117, 18);
 }
-.gridbase,
-.bottomgrid {
+.gridbase {
   text-align: center;
   font-size: 24px;
   font-style: normal;
@@ -124,11 +123,7 @@ p {
 }
 .gridgreen,
 .gridred,
-.gridblack,
-.b1gridblack,
-.b2gridblack,
-.b3gridblack,
-.simple {
+.gridblack {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -156,30 +151,65 @@ p {
   color: var(--gridtextcolor);
   border: 1px solid var(--bordercolor);
 }
-.simple {
-  color: var(--gridtextcolor);
-  border: 1px solid var(--bordercolor);
-}
 .bottomgrid {
   height: 84px;
-  width: 600px;
+  width: 646px;
   top: 69%;
-  grid-template-columns: repeat(6, 100px);
+  right: 3%;
+  grid-template-columns: repeat(6, 108px);
   grid-template-rows: repeat(2, 42px);
-}
-.b1gridblack {
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
-.b2gridblack {
-  grid-column-start: 3;
-  grid-column-end: 5;
-}
-.b3gridblack {
-  grid-column-start: 5;
-  grid-column-end: 7;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  display: grid;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 5px;
+  border: 2px solid var(--bordercolor);
+  cursor: pointer;
 }
 .value {
   z-index: 2;
   position: absolute;
+}
+.rowselect {
+  display: grid;
+  grid-row: 1/4;
+  grid-column: 14;
+  grid-template-rows: repeat(3, 1fr);
+  position: fixed;
+  right: 19.7%;
+  top: 50%;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  border: 2px solid var(--bordercolor);
+  cursor: pointer;
+  height: 210px;
+  width: 53.84px;
+}
+.simple {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  grid-column-end: span 2;
+  color: var(--gridtextcolor);
+  border: 1px solid var(--bordercolor);
+}
+.simple2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  color: var(--gridtextcolor);
+  border: 1px solid var(--bordercolor);
 }
