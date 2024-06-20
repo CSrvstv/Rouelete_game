@@ -1,7 +1,7 @@
 const subbetarray = [
-  "2:1",
-  "2:1",
-  "2:1",
+  "row1",
+  "row2",
+  "row3",
   "1st 12",
   "2nd 12",
   "3rd 12",

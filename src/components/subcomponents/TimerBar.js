@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import style from "./TimerBar.module.css";
 import { toggle } from "../../store/slices/ChipBlock";
 import { msg } from "../../store/slices/TimerMsg";
+import { reset } from "../../store/slices/GridBet";
 export default function TimerBar() {
   const timer = useSelector((state) => {
     return state.Tlimit;
@@ -13,7 +14,7 @@ export default function TimerBar() {
   useEffect(() => {
     if (timer === 0) {
       dispatch(toggle(false));
-      //console.log("stop bet");
+      dispatch(reset());
       dispatch(msg("BETS CLOSED !!"));
       setTimeout(() => {
         dispatch(msg("SPINNING"));
@@ -22,7 +23,6 @@ export default function TimerBar() {
           dispatch(Timelimit(10));
           dispatch(msg("PLACE YOUR BETS - "));
           dispatch(toggle(true));
-          //console.log("start bet");
         }, 5000);
       }, 3000);
       return;
