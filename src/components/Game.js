@@ -10,7 +10,7 @@ import betarray from "./subcomponents/Grid_constant1.js";
 import subbetarray from "./subcomponents/Grid_constant2.js";
 import { betPlace, undo } from "../store/slices/GridBet.js";
 import Footer from "./subcomponents/Footer.js";
-import { tot_bet } from "../store/slices/TotalBet.js";
+// import { tot_bet } from "../store/slces/TotalBet.js";
 export default function Game() {
   const selectedChip = useSelector((state) => {
     return state.selectedChip;
