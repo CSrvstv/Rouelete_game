@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import style from "./Game.module.css";
 import Modal from "./Modal";
 import x from "../images/x.svg";
-import { chipsarr } from "./Chiparr_constant.js";
 import { useDispatch, useSelector } from "react-redux";
-import { setchip } from "../store/slices/ChipSelect.js";
 import Time from "./subcomponents/Time.js";
 import TimerBar from "./subcomponents/TimerBar.js";
 import betarray from "./subcomponents/Grid_constant1.js";
 import subbetarray from "./subcomponents/Grid_constant2.js";
-import { betPlace } from "../store/slices/GridBet.js";
+import { betPlace, undo } from "../store/slices/GridBet.js";
+import Footer from "./subcomponents/Footer.js";
+import { tot_bet } from "../store/slices/TotalBet.js";
 export default function Game() {
   const selectedChip = useSelector((state) => {
     return state.selectedChip;
@@ -21,33 +21,19 @@ export default function Game() {
   const timer = useSelector((state) => {
     return state.Tlimit;
   });
+  const totalbet = useSelector((state) => {
+    return state.totalbet;
+  });
   const dispatch = useDispatch();
   useEffect(() => {}, [betarray, timer]);
-  const handleSelectedChip = (chipindex) => {
-    dispatch(setchip(chipindex));
-  };
+
   const time = <Time />;
-  const renderChips = useCallback(() => {
-    return chipsarr.map((chip, index) => (
-      <div
-        key={index}
-        className={style.cimg}
-        onClick={() => {
-          handleSelectedChip(chip.index);
-        }}
-      >
-        <div
-          className={`${selectedChip === chip.index ? style.highlight : ""} 
-          }`}
-        >
-          <img alt="" src={chip.img} />
-        </div>
-      </div>
-    ));
-  }, [chipsarr, selectedChip]);
+
   const handleBetspotClick = (num, chip) => {
     dispatch(betPlace({ num: num, chip: chip }));
+    // dispatch(tot_bet());
   };
+
   return (
     <>
       <nav className={style.navbar}>
@@ -80,7 +66,9 @@ export default function Game() {
         {betarray.map((num, i) => {
           let obj = null;
           arraybet.map((index) => {
-            if (index.num === num) obj = index;
+            if (index.num === num) {
+              obj = index;
+            }
           });
           return (
             <div
@@ -120,13 +108,14 @@ export default function Game() {
           arraybet.map((index) => {
             if (index.num === num) obj = index;
           });
-          return num === "2:1" ? (
+          return (num === "row1") | (num === "row2") | (num === "row3") ? (
             <div
               onClick={() =>
                 selectedChip !== null && timer > 0
                   ? handleBetspotClick(num, selectedChip)
                   : ""
               }
+              
               className={style.simple}
             >
               {obj != null ? (
@@ -214,7 +203,7 @@ export default function Game() {
                 ""
               )}
             </div>
-          ) : num === "Blue" ?(
+          ) : num === "Blue" ? (
             <div
               key={i}
               onClick={() =>
@@ -232,21 +221,21 @@ export default function Game() {
               )}
             </div>
           ) : (
-              ""
+            ""
           );
         })}
       </div>
-      <div className={style.footer}>
-        <div className={style.sub_footer}>
-          <div className={style.bet_amt}>
-            <p>Balance: $5000</p>
-            <p>Total Bet: $xxxx</p>
-          </div>
-          <div className={style.chips}>{timer !== 0 ? renderChips() : ""}</div>
-          <div></div>
-        </div>
-        <div className={style.main_footer}>Recent Results</div>
+      <div>
+        <button
+          className={style.undo}
+          onClick={() => {
+            timer > 0 && dispatch(undo());
+          }}
+        >
+          Undo
+        </button>
       </div>
+      <Footer />
     </>
   );
 }
