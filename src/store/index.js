@@ -5,6 +5,8 @@ import ChipBlock from "./slices/ChipBlock";
 import TimerMsg from "./slices/TimerMsg";
 import GridBet from "./slices/GridBet";
 import TotalBet from "./slices/TotalBet";
+import TotalBal from "./slices/TotalBal";
+import BetHistroy from "./slices/BetHistroy";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +16,8 @@ const store = configureStore({
     msg: TimerMsg,
     arraybet: GridBet,
     totalbet: TotalBet,
+    totalbal: TotalBal,
+    randomnum: BetHistroy
   },
 });
 

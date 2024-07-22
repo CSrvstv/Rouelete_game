@@ -6,9 +6,17 @@ import { toggle } from "../../store/slices/ChipBlock";
 import { msg } from "../../store/slices/TimerMsg";
 import { reset } from "../../store/slices/GridBet";
 import { tot_bet } from "../../store/slices/TotalBet";
+import { tot_bal } from "../../store/slices/TotalBal";
+import { get_random } from "../../store/slices/BetHistroy";
 export default function TimerBar() {
   const timer = useSelector((state) => {
     return state.Tlimit;
+  });
+  const totalbet = useSelector((state) => {
+    return state.totalbet;
+  });
+  const randomnum = useSelector((state) => {
+    return state.randomnum;
   });
   const barmsg = useSelector((state) => state.msg);
   const dispatch = useDispatch();
@@ -17,10 +25,11 @@ export default function TimerBar() {
       dispatch(toggle(false));
       dispatch(reset());
       dispatch(msg("BETS CLOSED !!"));
+      dispatch(tot_bal(totalbet))
       dispatch(tot_bet(-1))
       setTimeout(() => {
-        dispatch(msg("SPINNING"));
-        //random no show krna hai
+        // dispatch(msg("SPINNING"));
+        dispatch(get_random())
         setTimeout(() => {
           dispatch(Timelimit(10));
           dispatch(msg("PLACE YOUR BETS - "));
@@ -38,7 +47,7 @@ export default function TimerBar() {
   return (
     <div className={style.timer}>
       {timer === 0 ? (
-        <>{barmsg}</>
+        <> {randomnum}</>
       ) : (
         <>
           {barmsg} {timer}

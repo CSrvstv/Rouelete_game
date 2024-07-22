@@ -3,11 +3,14 @@ import style from "./Footer.module.css";
 import { chipsarr } from "../Chiparr_constant.js";
 import { useDispatch, useSelector } from "react-redux";
 import { setchip } from "../../store/slices/ChipSelect.js"
-import { get_tot_bet } from "../../store/slices/GridBet.js";
+
 export default function Footer() {
   const dispatch = useDispatch();
   const totalbet = useSelector((state) => {
     return state.totalbet;
+  });
+  const totalbal = useSelector((state) => {
+    return state.totalbal;
   });
   const selectedChip = useSelector((state) => {
     return state.selectedChip;
@@ -40,7 +43,7 @@ export default function Footer() {
     <div className={style.footer}>
       <div className={style.sub_footer}>
         <div className={style.bet_amt}>
-          <p>Balance: $5000</p>
+          <p>Balance: ${totalbal}</p>
           <p>Total Bet: ${totalbet}</p>
         </div>
         <div className={style.chips}>{timer !== 0 ? renderChips() : ""}</div>

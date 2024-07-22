@@ -6,7 +6,11 @@ const totalBal = createSlice({
   initialState: 5000,
   reducers: {
     tot_bal(state, action) {
-      
+        const val = action.payload;
+      state -= val;
+      if(state <= 0)
+        return 0;
+      return state;
     },
   },
 });

@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { chipsarr } from "../../components/subcomponents/Chiparr_constant2";
+import { useDispatch as dispatch} from "react-redux";
+import { tot_bet } from "./TotalBet";
+
+
 let prev = [];
 const GridBet = createSlice({
   name: "betgrid",
@@ -24,10 +28,12 @@ const GridBet = createSlice({
       if (prev.length == 0) return;
       console.log('!!' , prev);
       const last = prev.pop();
+      
       const it = state.findIndex((ele) => ele.num === last.num);
       //console.log(last, it);
       if (it != -1) state[it].value -= last.value;
       if (state[it].value == 0) state.splice(it, 1);
+
       //  state.pop();
     },
     reset(state, action) {
@@ -41,7 +47,7 @@ const GridBet = createSlice({
         return val;
         
       }, state);
-      
+
   },
 }});
 
