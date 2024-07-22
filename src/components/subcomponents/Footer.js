@@ -36,24 +36,12 @@ export default function Footer() {
       </div>
     ));
   }, [chipsarr, selectedChip]);
-
-//   let balance;
-//   let totalBet;
-//   if (timer > 0) {
-//     balance = <p>Balance: $5000</p>;
-//     totalBet = <p>Total Bet: $0</p>;
-//   } else {
-//     balance = <p>Balance: $5000</p>;
-//     totalBet = <p>Total Bet: ${totalbet}</p>;
-//   }
-let x = get_tot_bet();
-console.log(x);
   return (
     <div className={style.footer}>
       <div className={style.sub_footer}>
         <div className={style.bet_amt}>
           <p>Balance: $5000</p>
-          {/* <p>Total Bet: ${timer == 0 ? get_tot_bet() : "0"}</p> */}
+          <p>Total Bet: ${totalbet}</p>
         </div>
         <div className={style.chips}>{timer !== 0 ? renderChips() : ""}</div>
         <div></div>

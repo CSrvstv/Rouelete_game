@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { chipsarr } from "../../components/subcomponents/Chiparr_constant2";
-// let prev = [];
+let prev = [];
 const GridBet = createSlice({
   name: "betgrid",
   initialState: [],
@@ -15,15 +15,20 @@ const GridBet = createSlice({
       } else {
         const betItem = { num: num, value: chipObj.value, chip: chipObj.img };
         state.push(betItem);
+        // console.log(prev);
       }
+       const newbetItem = {num: num , value: chipObj.value, chip: chipObj.img};
+       prev.push(newbetItem);
     },
     undo(state, action) {
-      // const last = prev.pop();
-      // const it = state.findIndex((ele) => ele.num === last.num);
-      // console.log(last, it);
-      // if (it != -1) state[it].value -= last.value;
-      // if (state[it].value == 0) state.splice(it, 1);
-      state.pop();
+      if (prev.length == 0) return;
+      console.log('!!' , prev);
+      const last = prev.pop();
+      const it = state.findIndex((ele) => ele.num === last.num);
+      //console.log(last, it);
+      if (it != -1) state[it].value -= last.value;
+      if (state[it].value == 0) state.splice(it, 1);
+      //  state.pop();
     },
     reset(state, action) {
       return state = [];
@@ -32,10 +37,11 @@ const GridBet = createSlice({
       const index= action.payload;
       return state.reduce((val, e) => {
         if (e.index === index) return val + e.value;
-        console.log(val);
+        // console.log(val);
         return val;
         
       }, state);
+      
   },
 }});
 

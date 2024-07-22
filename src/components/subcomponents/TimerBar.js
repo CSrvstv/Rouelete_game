@@ -5,6 +5,7 @@ import style from "./TimerBar.module.css";
 import { toggle } from "../../store/slices/ChipBlock";
 import { msg } from "../../store/slices/TimerMsg";
 import { reset } from "../../store/slices/GridBet";
+import { tot_bet } from "../../store/slices/TotalBet";
 export default function TimerBar() {
   const timer = useSelector((state) => {
     return state.Tlimit;
@@ -16,6 +17,7 @@ export default function TimerBar() {
       dispatch(toggle(false));
       dispatch(reset());
       dispatch(msg("BETS CLOSED !!"));
+      dispatch(tot_bet(-1))
       setTimeout(() => {
         dispatch(msg("SPINNING"));
         //random no show krna hai

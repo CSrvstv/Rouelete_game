@@ -7,6 +7,8 @@ const totalBet = createSlice({
   reducers: {
     tot_bet(state, action) {
         const index= action.payload;
+        if(index == -1)
+          return 0;
       return chipsarr.reduce((val, e) => {
         if (e.index === index) {
           return val + e.value;
@@ -14,9 +16,6 @@ const totalBet = createSlice({
         return val;
       }, state);
     },
-    // tot_bet(state,action){
-        
-    // },
   },
 }); 
 
