@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import style from "./Game.module.css";
 import Modal from "./Modal";
 import x from "../images/x.svg";
+import u from "../images/u.svg";
 import { useDispatch, useSelector } from "react-redux";
 import Time from "./subcomponents/Time.js";
 import TimerBar from "./subcomponents/TimerBar.js";
@@ -115,7 +116,6 @@ export default function Game() {
                   ? handleBetspotClick(num, selectedChip)
                   : ""
               }
-              
               className={style.simple}
             >
               {obj != null ? (
@@ -227,12 +227,12 @@ export default function Game() {
       </div>
       <div>
         <button
-          className={style.undo}
+          className={timer>0 ? style.undo : style.undoblock}
           onClick={() => {
-            timer > 0 && dispatch(undo());
+            timer > 0 && dispatch(undo()) && dispatch(tot_bet(-selectedChip));
           }}
         >
-          Undo
+            <img src={u}></img>
         </button>
       </div>
       <Footer />

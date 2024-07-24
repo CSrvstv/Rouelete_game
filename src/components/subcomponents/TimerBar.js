@@ -26,7 +26,7 @@ export default function TimerBar() {
       dispatch(reset());
       dispatch(msg("BETS CLOSED !!"));
       dispatch(tot_bal(totalbet))
-      dispatch(tot_bet(-1))
+      dispatch(tot_bet(0))
       setTimeout(() => {
         // dispatch(msg("SPINNING"));
         dispatch(get_random())
