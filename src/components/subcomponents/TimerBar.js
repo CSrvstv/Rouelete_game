@@ -45,14 +45,20 @@ export default function TimerBar() {
     }
   }, [timer]);
   return (
-    <div className={style.timer}>
-      {timer === 0 ? (
-        <> {randomnum}</>
-      ) : (
-        <>
-          {barmsg} {timer}
-        </>
-      )}
+    <div className={style.container}>
+      <div
+        className={`${style.timer} ${
+          barmsg == "BETS CLOSED !!" ? style.slidedown : ""
+        }`}
+      >
+        {timer === 0 ? (
+          <> {randomnum}</>
+        ) : (
+          <>
+            {barmsg} {timer}
+          </>
+        )}
+      </div>
     </div>
   );
 }

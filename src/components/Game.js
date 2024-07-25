@@ -63,177 +63,179 @@ export default function Game() {
         </div>
       </nav>
       <TimerBar />
-      <div className={style.gridbase}>
-        {betarray.map((num, i) => {
-          let obj = null;
-          arraybet.map((index) => {
-            if (index.num === num) {
-              obj = index;
-            }
-          });
-          return (
-            <div
-              onClick={() =>
-                selectedChip !== null && timer > 0
-                  ? handleBetspotClick(num, selectedChip)
-                  : ""
+      <div className={style.board}>
+        <div className={style.gridbase}>
+          {betarray.map((num, i) => {
+            let obj = null;
+            arraybet.map((index) => {
+              if (index.num === num) {
+                obj = index;
               }
-              className={
-                num === 0
-                  ? style.gridgreen
-                  : ((num - 2) % 9 === 0) |
-                    ((num + 3) % 2 !== 0 && (num - 1) % 9 === 0) |
-                    ((num - 4) % 9 === 0) |
-                    ((num - 6) % 9 === 0) |
-                    ((num - 8) % 9 === 0)
-                  ? style.gridblack
-                  : style.gridred
-              }
-              key={i}
-            >
-              {obj != null ? (
-                <div className={style.container}>
-                  <img src={obj.chip} alt="Selected Chip" />
-                  <h6 className={style.value}>{obj.value}</h6>
-                </div>
-              ) : (
-                <span>{num}</span>
-              )}
-            </div>
-          );
-        })}
-      </div>
-      <div className={style.rowselect}>
-        {subbetarray.map((num, i) => {
-          let obj = null;
-          arraybet.map((index) => {
-            if (index.num === num) obj = index;
-          });
-          return (num === "row1") | (num === "row2") | (num === "row3") ? (
-            <div
-              onClick={() =>
-                selectedChip !== null && timer > 0
-                  ? handleBetspotClick(num, selectedChip)
-                  : ""
-              }
-              className={style.simple}
-            >
-              {obj != null ? (
-                <div className={style.container}>
-                  <img src={obj.chip} alt="Selected Chip" />
-                  <h6 className={style.value}>{obj.value}</h6>
-                </div>
-              ) : (
-                <span>2:1</span>
-              )}
-            </div>
-          ) : (
-            ""
-          );
-        })}
-      </div>
-      <div className={style.bottomgrid}>
-        {subbetarray.map((num, i) => {
-          let obj = null;
-          arraybet.map((index) => {
-            if (index.num === num) obj = index;
-          });
-          return (num === "1st 12") |
-            (num === "2nd 12") |
-            (num === "3rd 12") ? (
-            <div
-              key={i}
-              onClick={() =>
-                selectedChip != null ? handleBetspotClick(num) : ""
-              }
-              className={style.simple}
-            >
-              {obj != null ? (
-                <div className={style.container}>
-                  <img src={obj.chip} alt="Selected Chip" />
-                  <h6 className={style.value}>{obj.value}</h6>
-                </div>
-              ) : (
-                <span>{num}</span>
-              )}
-            </div>
-          ) : (
-            ""
-          );
-        })}
-        {subbetarray.map((num, i) => {
-          let obj = null;
-          arraybet.map((index) => {
-            if (index.num === num) obj = index;
-          });
-          return (num === "1-18") |
-            (num === "19-36") |
-            (num === "Even") |
-            (num === "Odd") ? (
-            <div
-              key={i}
-              onClick={() =>
-                selectedChip != null ? handleBetspotClick(num) : ""
-              }
-              className={style.simple2}
-            >
-              {obj != null ? (
-                <div className={style.container}>
-                  <img src={obj.chip} alt="Selected Chip" />
-                  <h6 className={style.value}>{obj.value}</h6>
-                </div>
-              ) : (
-                <span>{num}</span>
-              )}
-            </div>
-          ) : num === "Red" ? (
-            <div
-              key={i}
-              onClick={() =>
-                selectedChip != null ? handleBetspotClick(num) : ""
-              }
-              className={style.gridred}
-            >
-              {obj != null ? (
-                <div className={style.container}>
-                  <img src={obj.chip} alt="Selected Chip" />
-                  <h6 className={style.value}>{obj.value}</h6>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
-          ) : num === "Blue" ? (
-            <div
-              key={i}
-              onClick={() =>
-                selectedChip != null ? handleBetspotClick(num) : ""
-              }
-              className={style.gridblack}
-            >
-              {obj != null ? (
-                <div className={style.container}>
-                  <img src={obj.chip} alt="Selected Chip" />
-                  <h6 className={style.value}>{obj.value}</h6>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
-          ) : (
-            ""
-          );
-        })}
-      </div>
-      <div>
-        <button
-          className={timer>0 ? style.undo : style.undoblock}
-          onClick={() => {
-            timer > 0 && dispatch(undo()) && dispatch(tot_bet(-selectedChip));
-          }}
-        >
+            });
+            return (
+              <div
+                onClick={() =>
+                  selectedChip !== null && timer > 0
+                    ? handleBetspotClick(num, selectedChip)
+                    : ""
+                }
+                className={
+                  num === 0
+                    ? style.gridgreen
+                    : ((num - 2) % 9 === 0) |
+                      ((num + 3) % 2 !== 0 && (num - 1) % 9 === 0) |
+                      ((num - 4) % 9 === 0) |
+                      ((num - 6) % 9 === 0) |
+                      ((num - 8) % 9 === 0)
+                    ? style.gridblack
+                    : style.gridred
+                }
+                key={i}
+              >
+                {obj != null ? (
+                  <div className={style.container}>
+                    <img src={obj.chip} alt="Selected Chip" />
+                    <h6 className={style.value}>{obj.value}</h6>
+                  </div>
+                ) : (
+                  <span>{num}</span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        <div className={style.rowselect}>
+          {subbetarray.map((num, i) => {
+            let obj = null;
+            arraybet.map((index) => {
+              if (index.num === num) obj = index;
+            });
+            return (num === "row1") | (num === "row2") | (num === "row3") ? (
+              <div
+                onClick={() =>
+                  selectedChip !== null && timer > 0
+                    ? handleBetspotClick(num, selectedChip)
+                    : ""
+                }
+                className={style.simple}
+              >
+                {obj != null ? (
+                  <div className={style.container}>
+                    <img src={obj.chip} alt="Selected Chip" />
+                    <h6 className={style.value}>{obj.value}</h6>
+                  </div>
+                ) : (
+                  <span>2:1</span>
+                )}
+              </div>
+            ) : (
+              ""
+            );
+          })}
+        </div>
+        <div className={style.bottomgrid}>
+          {subbetarray.map((num, i) => {
+            let obj = null;
+            arraybet.map((index) => {
+              if (index.num === num) obj = index;
+            });
+            return (num === "1st 12") |
+              (num === "2nd 12") |
+              (num === "3rd 12") ? (
+              <div
+                key={i}
+                onClick={() =>
+                  selectedChip != null ? handleBetspotClick(num) : ""
+                }
+                className={style.simple}
+              >
+                {obj != null ? (
+                  <div className={style.container}>
+                    <img src={obj.chip} alt="Selected Chip" />
+                    <h6 className={style.value}>{obj.value}</h6>
+                  </div>
+                ) : (
+                  <span>{num}</span>
+                )}
+              </div>
+            ) : (
+              ""
+            );
+          })}
+          {subbetarray.map((num, i) => {
+            let obj = null;
+            arraybet.map((index) => {
+              if (index.num === num) obj = index;
+            });
+            return (num === "1-18") |
+              (num === "19-36") |
+              (num === "Even") |
+              (num === "Odd") ? (
+              <div
+                key={i}
+                onClick={() =>
+                  selectedChip != null ? handleBetspotClick(num) : ""
+                }
+                className={style.simple2}
+              >
+                {obj != null ? (
+                  <div className={style.container}>
+                    <img src={obj.chip} alt="Selected Chip" />
+                    <h6 className={style.value}>{obj.value}</h6>
+                  </div>
+                ) : (
+                  <span>{num}</span>
+                )}
+              </div>
+            ) : num === "Red" ? (
+              <div
+                key={i}
+                onClick={() =>
+                  selectedChip != null ? handleBetspotClick(num) : ""
+                }
+                className={style.gridred}
+              >
+                {obj != null ? (
+                  <div className={style.container}>
+                    <img src={obj.chip} alt="Selected Chip" />
+                    <h6 className={style.value}>{obj.value}</h6>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+            ) : num === "Blue" ? (
+              <div
+                key={i}
+                onClick={() =>
+                  selectedChip != null ? handleBetspotClick(num) : ""
+                }
+                className={style.gridblack}
+              >
+                {obj != null ? (
+                  <div className={style.container}>
+                    <img src={obj.chip} alt="Selected Chip" />
+                    <h6 className={style.value}>{obj.value}</h6>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+            ) : (
+              ""
+            );
+          })}
+        </div>
+        <div>
+          <button
+            className={timer > 0 ? style.undo : style.undoblock}
+            onClick={() => {
+              timer > 0 && dispatch(undo()) && dispatch(tot_bet(-selectedChip));
+            }}
+          >
             <img src={u}></img>
-        </button>
+          </button>
+        </div>
       </div>
       <Footer />
     </>

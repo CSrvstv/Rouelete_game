@@ -1,5 +1,20 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
 .timer {
   display: flex;
   justify-content: center;
   transition: all 0.7s ease;
+  border-radius: 12px;
+  background-color: grey;
+  width: 40%;
+  height: 3vh;
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 500;
+  text-align: center;
+}
+.slidedowm {
+  transform: translateX(calc(60% + 75px));
 }

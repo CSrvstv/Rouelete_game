@@ -22,6 +22,8 @@ const totalBet = createSlice({
       const x = -1 * index;
       return chipsarr.reduce((val, e) => {
         if (e.index === x) {
+          if(val == 0)
+            return 0;
           return val - e.value;
         }
         return val;
