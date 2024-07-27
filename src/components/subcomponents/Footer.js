@@ -46,8 +46,10 @@ export default function Footer() {
           <p>Balance: ${totalbal}</p>
           <p>Total Bet: ${totalbet}</p>
         </div>
-        <div className={style.chips}>{timer !== 0 ? renderChips() : ""}</div>
-        <div></div>
+        <div className={timer !== 0 ? style.chips : style.chipsdown }>{timer !== 0 ? renderChips() : ""}</div>
+        <div className={style.statictis}>
+          <p>statictis</p>
+        </div>
       </div>
       <div className={style.main_footer}>Recent Results</div>
     </div>

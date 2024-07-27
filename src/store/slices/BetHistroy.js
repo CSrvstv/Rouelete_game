@@ -6,7 +6,7 @@ const Bethistory = createSlice({
   initialState: "",
   reducers: {
     get_random(state, action) {
-      const n = Math.floor(Math.random() * 37);;
+      const n = Math.floor(Math.random() * 37);
       return n;
     },
   },

@@ -8,6 +8,7 @@ import { reset } from "../../store/slices/GridBet";
 import { tot_bet } from "../../store/slices/TotalBet";
 import { tot_bal } from "../../store/slices/TotalBal";
 import { get_random } from "../../store/slices/BetHistroy";
+import r from "../../images/r.svg"
 export default function TimerBar() {
   const timer = useSelector((state) => {
     return state.Tlimit;
@@ -24,12 +25,13 @@ export default function TimerBar() {
     if (timer === 0) {
       dispatch(toggle(false));
       dispatch(reset());
-      dispatch(msg("BETS CLOSED !!"));
+      dispatch(msg("BETS CLOSED"));
       dispatch(tot_bal(totalbet))
       dispatch(tot_bet(0))
       setTimeout(() => {
-        // dispatch(msg("SPINNING"));
-        dispatch(get_random())
+        dispatch(msg("SPINNING"));
+        setTimeout(()=>{dispatch(get_random())
+        dispatch(msg("RESULT")); },3000);
         setTimeout(() => {
           dispatch(Timelimit(10));
           dispatch(msg("PLACE YOUR BETS - "));
@@ -46,13 +48,17 @@ export default function TimerBar() {
   }, [timer]);
   return (
     <div className={style.container}>
-      <div
-        className={`${style.timer} ${
-          barmsg == "BETS CLOSED !!" ? style.slidedown : ""
-        }`}
-      >
-        {timer === 0 ? (
-          <> {randomnum}</>
+      <div className={style.random}>
+        {barmsg === "RESULT" && (
+          <>
+            <img src={r} alt="Random" />
+            <p className={style.text}>{randomnum}</p>
+          </>
+        )}
+      </div>
+      <div className={style.timer}>
+        {timer == 0 ? (
+          barmsg
         ) : (
           <>
             {barmsg} {timer}
