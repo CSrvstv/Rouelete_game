@@ -15,6 +15,9 @@ export default function Footer() {
   const selectedChip = useSelector((state) => {
     return state.selectedChip;
   });
+  const bethistory = useSelector((state) => {
+    return state.bethistory;
+  });
   const handleSelectedChip = (chipindex) => {
     dispatch(setchip(chipindex));
   };
@@ -51,7 +54,13 @@ export default function Footer() {
           <p>statictis</p>
         </div>
       </div>
-      <div className={style.main_footer}>Recent Results</div>
+      <div className={style.main_footer}>
+        {bethistory.map((e,i)=>{
+          return (
+            <div className={style.text}>{e}</div>
+          );
+        })}
+      </div>
     </div>
   );
 }

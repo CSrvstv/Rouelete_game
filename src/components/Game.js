@@ -13,6 +13,7 @@ import subbetarray from "./subcomponents/Grid_constant2.js";
 import { betPlace, undo } from "../store/slices/GridBet.js";
 import Footer from "./subcomponents/Footer.js";
 import { tot_bet } from "../store/slices/TotalBet.js";
+
 export default function Game() {
   const selectedChip = useSelector((state) => {
     return state.selectedChip;
@@ -35,10 +36,6 @@ export default function Game() {
     dispatch(betPlace({ num: num, chip: chip }));
     dispatch(tot_bet(chip));
   };
-  const randomnum = useSelector((state) => {
-    return state.randomnum;
-  });
-  const barmsg = useSelector((state) => state.msg);
 
   return (
     <>
@@ -96,7 +93,7 @@ export default function Game() {
                       ? style.gridblack
                       : style.gridred
                   }
-                  key={i}
+                key={i}
                 >
                   {obj != null ? (
                     <div className={style.container}>

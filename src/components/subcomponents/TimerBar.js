@@ -7,7 +7,7 @@ import { msg } from "../../store/slices/TimerMsg";
 import { reset } from "../../store/slices/GridBet";
 import { tot_bet } from "../../store/slices/TotalBet";
 import { tot_bal } from "../../store/slices/TotalBal";
-import { get_random } from "../../store/slices/BetHistroy";
+import { set_bethistory, get_random } from "../../store/slices/BetHistroy";
 import r from "../../images/r.svg"
 export default function TimerBar() {
   const timer = useSelector((state) => {
@@ -16,11 +16,10 @@ export default function TimerBar() {
   const totalbet = useSelector((state) => {
     return state.totalbet;
   });
-  const randomnum = useSelector((state) => {
-    return state.randomnum;
-  });
+  
   const barmsg = useSelector((state) => state.msg);
   const dispatch = useDispatch();
+  const [n, setN] = useState(Math.floor(Math.random() * 37));
   useEffect(() => {
     if (timer === 0) {
       dispatch(toggle(false));
@@ -30,8 +29,13 @@ export default function TimerBar() {
       dispatch(tot_bet(0))
       setTimeout(() => {
         dispatch(msg("SPINNING"));
-        setTimeout(()=>{dispatch(get_random())
-        dispatch(msg("RESULT")); },3000);
+        setTimeout(()=>{
+          dispatch(msg("RESULT"));
+          const newNumber = Math.floor(Math.random() * 37); // Generate new random number
+          setN(newNumber); // Update local state with the new number
+          dispatch(set_bethistory(newNumber)); // Dispatch action to update Redux state
+        },3000);
+
         setTimeout(() => {
           dispatch(Timelimit(10));
           dispatch(msg("PLACE YOUR BETS - "));
@@ -46,13 +50,14 @@ export default function TimerBar() {
       return () => clearInterval(intervalId);
     }
   }, [timer]);
+  
   return (
     <div className={style.container}>
       <div className={style.random}>
         {barmsg === "RESULT" && (
           <>
             <img src={r} alt="Random" />
-            <p className={style.text}>{randomnum}</p>
+            <p className={style.text}>{n} </p>
           </>
         )}
       </div>

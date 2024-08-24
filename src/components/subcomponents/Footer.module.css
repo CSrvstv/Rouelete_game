@@ -34,15 +34,6 @@
   animation-duration: 1s;
 }
 @keyframes chipsanimation {
-  /* 0%{
-
-  }
-  50%{
-    transform: translateY(20px);
-  }
-  100%{
-    transform: translateY(100px);
-  } */
   from{
     transform: translateY(200px);
   }
@@ -72,4 +63,23 @@
 }
 .statictis{
   margin-right: 20px;
+}
+.main_footer{
+  position: absolute;
+  display: flex;
+  border: solid 1px #000000;
+  height: 10px;
+  bottom: 0;
+  background-color:grey ;
+  text-align: left;
+  color: #000000;
+}
+.text{
+  border: solid 1px black;
+  border-radius: 10px;
+  padding: 1px 10px 1px 10px ;
+  margin: 1px;
+  background-color: #000000;
+  color: red;
+
 }
