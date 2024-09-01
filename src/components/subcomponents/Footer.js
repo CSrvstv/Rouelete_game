@@ -57,7 +57,21 @@ export default function Footer() {
       <div className={style.main_footer}>
         {bethistory.map((e,i)=>{
           return (
-            <div className={style.text}>{e}</div>
+            <div
+              className={`${style.text}  ${
+                e === 0
+                  ? style.betgreen
+                  : ((e - 2) % 9 === 0) |
+                    ((e + 3) % 2 !== 0 && (e - 1) % 9 === 0) |
+                    ((e - 4) % 9 === 0) |
+                    ((e - 6) % 9 === 0) |
+                    ((e - 8) % 9 === 0)
+                  ? style.betblack
+                  : style.betred
+              }`}
+            >
+              {e}
+            </div>
           );
         })}
       </div>

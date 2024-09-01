@@ -5,7 +5,7 @@ const Bethistory = createSlice({
   initialState:[],
   reducers: {
       set_bethistory(state,action) {
-        state.push(action.payload);
+        state.unshift(action.payload);
         console.log(state);
     },
   },
