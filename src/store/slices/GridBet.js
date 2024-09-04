@@ -11,18 +11,18 @@ const GridBet = createSlice({
   reducers: {
     betPlace(state, action) {
       const { num, chip } = action.payload;
+      let it;
       const chipObj = chipsarr.find((c) => c.index == chip);
-      const it = state.findIndex((ele) => ele.num === num);
-      if (it !== -1) {
-        state[it].chip = chipObj.img;
-        state[it].value += chipObj.value;
-      } else {
-        const betItem = { num: num, value: chipObj.value, chip: chipObj.img };
-        state.push(betItem);
-        // console.log(prev);
-      }
-       const newbetItem = {num: num , value: chipObj.value, chip: chipObj.img};
-       prev.push(newbetItem);
+        it = state.findIndex((ele) => ele.num === num);
+        if (it !== -1) {
+          state[it].chip = chipObj.img;
+          state[it].value += chipObj.value;
+        } else {
+          const betItem = { num: num, value: chipObj.value, chip: chipObj.img };
+          state.push(betItem);
+        }
+        const newbetItem = {num: num , value: chipObj.value, chip: chipObj.img};
+        prev.push(newbetItem);
     },
     undo(state, action) {
       if (prev.length == 0) return;
@@ -30,11 +30,8 @@ const GridBet = createSlice({
       const last = prev.pop();
       
       const it = state.findIndex((ele) => ele.num === last.num);
-      //console.log(last, it);
       if (it != -1) state[it].value -= last.value;
       if (state[it].value == 0) state.splice(it, 1);
-
-      //  state.pop();
     },
     reset(state, action) {
       return state = [];
@@ -43,7 +40,6 @@ const GridBet = createSlice({
       const index= action.payload;
       return state.reduce((val, e) => {
         if (e.index === index) return val + e.value;
-        // console.log(val);
         return val;
         
       }, state);

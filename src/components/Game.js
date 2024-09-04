@@ -123,7 +123,7 @@ export default function Game() {
                   className={style.simple}
                 >
                   {obj != null ? (
-                    <div className={style.container}>
+                    <div className={style.container1}>
                       <img src={obj.chip} alt="Selected Chip" />
                       <h6 className={style.value}>{obj.value}</h6>
                     </div>
@@ -149,12 +149,14 @@ export default function Game() {
               <div
                 key={i}
                 onClick={() =>
-                  selectedChip != null ? handleBetspotClick(num) : ""
+                  selectedChip != null && timer > 0
+                    ? handleBetspotClick(num, selectedChip)
+                    : ""
                 }
                 className={style.simple}
               >
                 {obj != null ? (
-                  <div className={style.container}>
+                  <div className={style.container1}>
                     <img src={obj.chip} alt="Selected Chip" />
                     <h6 className={style.value}>{obj.value}</h6>
                   </div>
@@ -178,12 +180,14 @@ export default function Game() {
               <div
                 key={i}
                 onClick={() =>
-                  selectedChip != null ? handleBetspotClick(num) : ""
+                  selectedChip != null && timer > 0
+                    ? handleBetspotClick(num, selectedChip)
+                    : ""
                 }
                 className={style.simple2}
               >
                 {obj != null ? (
-                  <div className={style.container}>
+                  <div className={style.container1}>
                     <img src={obj.chip} alt="Selected Chip" />
                     <h6 className={style.value}>{obj.value}</h6>
                   </div>
@@ -195,12 +199,14 @@ export default function Game() {
               <div
                 key={i}
                 onClick={() =>
-                  selectedChip != null ? handleBetspotClick(num) : ""
+                  selectedChip != null && timer > 0
+                    ? handleBetspotClick(num, selectedChip)
+                    : ""
                 }
                 className={style.gridred}
               >
                 {obj != null ? (
-                  <div className={style.container}>
+                  <div className={style.container1}>
                     <img src={obj.chip} alt="Selected Chip" />
                     <h6 className={style.value}>{obj.value}</h6>
                   </div>
@@ -212,12 +218,14 @@ export default function Game() {
               <div
                 key={i}
                 onClick={() =>
-                  selectedChip != null ? handleBetspotClick(num) : ""
+                  selectedChip != null && timer > 0
+                    ? handleBetspotClick(num, selectedChip)
+                    : ""
                 }
                 className={style.gridblack}
               >
                 {obj != null ? (
-                  <div className={style.container}>
+                  <div className={style.container1}>
                     <img src={obj.chip} alt="Selected Chip" />
                     <h6 className={style.value}>{obj.value}</h6>
                   </div>

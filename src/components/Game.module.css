@@ -70,7 +70,7 @@ input{
   grid-template-columns: repeat(13, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
-.container {
+.container,.container1 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,6 +78,11 @@ input{
 .container img {
   max-width: 45px;
   max-height: 45px;
+  position: relative;
+}
+.container1 img{
+  max-width: 30px;
+  max-height: 30px;
   position: relative;
 }
 .gridgreen,
