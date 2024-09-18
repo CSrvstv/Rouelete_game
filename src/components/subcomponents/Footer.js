@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import style from "./Footer.module.css";
 import { chipsarr } from "../Chiparr_constant.js";
 import { useDispatch, useSelector } from "react-redux";
-import { setchip } from "../../store/slices/ChipSelect.js"
+import { setchip } from "../../store/slices/ChipSelect.js";
 
 export default function Footer() {
   const dispatch = useDispatch();
@@ -18,30 +18,34 @@ export default function Footer() {
   const bethistory = useSelector((state) => {
     return state.bethistory;
   });
-  const handleSelectedChip = (chipindex) => {
-    dispatch(setchip(chipindex));
-  };
   const timer = useSelector((state) => {
     return state.Tlimit;
   });
+
+  const handleSelectedChip = (chipindex) => {
+    dispatch(setchip(chipindex));
+  };
+
   const renderChips = useCallback(() => {
     return chipsarr.map((chip, index) => (
       <div
         key={index}
-        className={style.cimg}
+        className={` ${style.cimg} ${
+          timer === 0 ? style.chipsdown : style.chipsup
+        }`}
         onClick={() => {
           handleSelectedChip(chip.index);
         }}
       >
         <div
-          className={`${selectedChip === chip.index ? style.highlight : ""} 
-          }`}
+          className={`${selectedChip === chip.index ? style.highlight : ""}`}
         >
           <img alt="" src={chip.img} />
         </div>
       </div>
     ));
-  }, [chipsarr, selectedChip]);
+  }, [chipsarr, selectedChip, timer]);
+
   return (
     <div className={style.footer}>
       <div className={style.sub_footer}>
@@ -49,16 +53,17 @@ export default function Footer() {
           <p>Balance: ${totalbal}</p>
           <p>Total Bet: ${totalbet}</p>
         </div>
-        <div className={timer !== 0 ? style.chips : style.chipsdown }>{timer !== 0 ? renderChips() : ""}</div>
+        <div className={style.chips}>{renderChips()}</div>
         <div className={style.statictis}>
           <p>statictis</p>
         </div>
       </div>
       <div className={style.main_footer}>
-        {bethistory.map((e,i)=>{
+        {bethistory.map((e, i) => {
           return (
             <div
-              className={`${style.text}  ${
+              key={i}
+              className={`${style.text} ${
                 e === 0
                   ? style.betgreen
                   : ((e - 2) % 9 === 0) |

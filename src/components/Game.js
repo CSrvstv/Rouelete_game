@@ -4,39 +4,31 @@ import style from "./Game.module.css";
 import Modal from "./Modal";
 import x from "../images/x.svg";
 import u from "../images/u.svg";
-import r from "../images/r.svg";
+import sq from "../images/sq.png"
+import repeat from "../images/repeat.svg"
 import { useDispatch, useSelector } from "react-redux";
 import Time from "./subcomponents/Time.js";
 import TimerBar from "./subcomponents/TimerBar.js";
 import betarray from "./subcomponents/Grid_constant1.js";
 import subbetarray from "./subcomponents/Grid_constant2.js";
-import { betPlace, undo } from "../store/slices/GridBet.js";
+import { betPlace, undo , rebet } from "../store/slices/GridBet.js";
 import Footer from "./subcomponents/Footer.js";
 import { tot_bet } from "../store/slices/TotalBet.js";
 
 export default function Game() {
-  const selectedChip = useSelector((state) => {
-    return state.selectedChip;
-  });
-  const arraybet = useSelector((state) => {
-    return state.arraybet;
-  });
-  const timer = useSelector((state) => {
-    return state.Tlimit;
-  });
-  const totalbet = useSelector((state) => {
-    return state.totalbet;
-  });
+  const selectedChip = useSelector((state) => state.selectedChip);
+  const arraybet = useSelector((state) => state.arraybet.bets); 
+  const lastState = useSelector((state) => state.arraybet.lastState); 
+  const timer = useSelector((state) => state.Tlimit);
+  const totalbet = useSelector((state) => state.totalbet);
   const dispatch = useDispatch();
   useEffect(() => {}, [betarray, timer]);
-
   const time = <Time />;
 
   const handleBetspotClick = (num, chip) => {
     dispatch(betPlace({ num: num, chip: chip }));
     dispatch(tot_bet(chip));
   };
-
   return (
     <>
       <nav className={style.navbar}>
@@ -93,7 +85,7 @@ export default function Game() {
                       ? style.gridblack
                       : style.gridred
                   }
-                key={i}
+                  key={i}
                 >
                   {obj != null ? (
                     <div className={style.container}>
@@ -238,14 +230,38 @@ export default function Game() {
             );
           })}
         </div>
-        <div>
+        <div className={style.buttons}>
           <button
-            className={timer == 0 || totalbet == 0? style.undoblock : style.undo}
+            className={
+              timer == 0 || totalbet == 0 ? style.undoblock : style.undo
+            }
             onClick={() => {
               timer > 0 && dispatch(undo()) && dispatch(tot_bet(-selectedChip));
             }}
           >
             <img src={u}></img>
+          </button>
+          <button
+            className={
+              timer === 0
+                ? style.repeatblock
+                : timer !== 0 && arraybet.length > 0
+                ? style.square
+                : style.repeat
+            }
+            onClick={() => {
+              if (timer > 0 && lastState.length > 0 && arraybet.length === 0) {
+                dispatch(rebet());
+              }
+            }}
+          >
+            {timer === 0 ? (
+              <img src={repeat} alt="Repeat Block" />
+            ) : timer !== 0 && arraybet.length > 0 ? (
+              <img className={style.square} src={sq} alt="Square" />
+            ) : (
+              <img src={repeat} alt="Repeat" />
+            )}
           </button>
         </div>
       </div>

@@ -17,7 +17,7 @@ const store = configureStore({
     arraybet: GridBet,
     totalbet: TotalBet,
     totalbal: TotalBal,
-    bethistory: BetHistroy
+    bethistory: BetHistroy,
   },
 });
 

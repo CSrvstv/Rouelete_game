@@ -1,49 +1,95 @@
-.container,.random{
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap:10px;
+  gap: 10px;
 }
-.timer {
+
+.random {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transform: translateY(-200vh); /* Start hidden above the viewport */
+}
+
+.animate {
+  animation: chipsSlideDown 2s forwards;
+}
+
+.timer, .timerin {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
   font-family: 'Times New Roman', Times, serif;
   font-weight: 500;
-  background-color: grey;
-  width: 40%;
+  width: 35%;
   height: 3vh;
   border-radius: 12px;
-  transition: transform 1s linear;
+  overflow: hidden;
+  transition: background-color 0.5s ease;
+  position: relative;
 }
-@keyframes up {
-  from{
-    transform: translateY(100px);
-  }
-  to{
-    transform: translateY(0);
-  }
+
+.timerFill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: green; 
+  border-radius: 12px;
+  transition: width 1s linear, background-color 0.1s ease;
 }
-@keyframes down {
-  from{
-    transform: translateY(-400px);
-  }
-  to{
-    transform: translateY(0);
-  }
-}
-.timer {
-  animation-name: up;
-  animation-duration: 1s;
-}
-.text{
+
+.text {
   z-index: 5;
   position: absolute;
   font-size: larger;
   font-weight: 400;
-  color: bisque;
   padding-bottom: 30px;
 }
 
+.timer[data-timer="green"] .timerFill {
+  background-color: green;
+}
+
+.timer[data-timer="yellow"] .timerFill {
+  background-color: yellow;
+}
+.timer[data-timer="yellow"] .timerin {
+  color: rgb(0, 0, 0);
+}
+
+.timer[data-timer="red"] .timerFill {
+  background-color: red;
+}
+.timerin {
+  width: 35%;
+  height: 3vh;
+  background-color: rgba(107, 107, 107, 0.192);
+  color: antiquewhite;
+  min-width: 50px;
+  z-index: 6;
+  position: fixed;
+}
+.timerout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200vw;
+  font-size: larger;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+
+@keyframes chipsSlideDown {
+  0% {
+    transform: translateY(-200vh); /* Start above the viewport */
+  }
+  100% {
+    transform: translateY(0); /* Slide down to the original position */
+  }
+}
