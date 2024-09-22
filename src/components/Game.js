@@ -11,7 +11,7 @@ import Time from "./subcomponents/Time.js";
 import TimerBar from "./subcomponents/TimerBar.js";
 import betarray from "./subcomponents/Grid_constant1.js";
 import subbetarray from "./subcomponents/Grid_constant2.js";
-import { betPlace, undo , rebet } from "../store/slices/GridBet.js";
+import { betPlace, undo , rebet ,double } from "../store/slices/GridBet.js";
 import Footer from "./subcomponents/Footer.js";
 import { tot_bet } from "../store/slices/TotalBet.js";
 
@@ -246,7 +246,7 @@ export default function Game() {
               timer === 0
                 ? style.repeatblock
                 : timer !== 0 && arraybet.length > 0
-                ? style.square
+                ? style.double
                 : style.repeat
             }
             onClick={() => {
@@ -258,7 +258,13 @@ export default function Game() {
             {timer === 0 ? (
               <img src={repeat} alt="Repeat Block" />
             ) : timer !== 0 && arraybet.length > 0 ? (
-              <img className={style.square} src={sq} alt="Square" />
+              <div
+              onClick={()=>{
+                dispatch(double());
+              }}
+              >
+                <img className={style.double} src={sq} alt="Square" />
+              </div>
             ) : (
               <img src={repeat} alt="Repeat" />
             )}

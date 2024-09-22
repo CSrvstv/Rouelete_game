@@ -239,7 +239,7 @@ input{
 .repeatblock{
   filter: brightness(30%);
 }
-.square{
+.double{
   background-color:hsla(0, 4%, 16%, 0);
   box-shadow: none;
   width: 42px;
