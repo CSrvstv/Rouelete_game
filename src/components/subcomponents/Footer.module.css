@@ -127,7 +127,8 @@
     transform: translateY(0); /* Start at original position */
   }
   100% {
-    transform: translateY(200vh); /* Slide down to the bottom of the viewport */
+    transform: translateY(200vh); 
+    display: none;
   }
 }
 
@@ -136,6 +137,6 @@
     transform: translateY(200vh); /* Start at the bottom of the viewport */
   }
   100% {
-    transform: translateY(0); /* Slide up to the original position */
+    transform: translateY(0);/* Slide up to the original position */
   }
 }

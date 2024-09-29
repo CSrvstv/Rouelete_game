@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Timelimit } from "../../store/slices/Timer";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./TimerBar.module.css";
@@ -7,50 +7,74 @@ import { msg } from "../../store/slices/TimerMsg";
 import { reset } from "../../store/slices/GridBet";
 import { tot_bet } from "../../store/slices/TotalBet";
 import { tot_bal } from "../../store/slices/TotalBal";
-import { set_bethistory, get_random } from "../../store/slices/BetHistroy";
+import { set_bethistory } from "../../store/slices/BetHistroy";
 import r from "../../images/r.svg";
 
 export default function TimerBar() {
-  const timer = useSelector((state) => {
-    return state.Tlimit;
-  });
-  const totalbet = useSelector((state) => {
-    return state.totalbet;
-  });
-
+  const timer = useSelector((state) => state.Tlimit);
+  const totalbet = useSelector((state) => state.totalbet);
   const barmsg = useSelector((state) => state.msg);
+  const arraybet = useSelector((state) => state.arraybet.bets);
+
   const dispatch = useDispatch();
   const [n, setN] = useState(Math.floor(Math.random() * 37));
+  const timerRef = useRef(timer);
 
   useEffect(() => {
+    timerRef.current = timer;
+  }, [timer]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (timerRef.current > 0) {
+        dispatch(Timelimit(timerRef.current - 1));
+      }
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [dispatch]);
+
+  useEffect(() => {
+    let t = [];
+
     if (timer === 0) {
       dispatch(toggle(false));
       dispatch(reset());
       dispatch(msg("BETS CLOSED"));
       dispatch(tot_bal(totalbet));
       dispatch(tot_bet(0));
-      setTimeout(() => {
+      const t1 = setTimeout(() => {
         dispatch(msg("SPINNING"));
-        setTimeout(() => {
-          dispatch(msg("RESULT"));
-          const newNumber = Math.floor(Math.random() * 37);
-          setN(newNumber);
-          dispatch(set_bethistory(newNumber));
-        }, 5000);
+      }, 5000);
+      t.push(t1);
 
-        setTimeout(() => {
-          dispatch(Timelimit(10));
-          dispatch(msg("PLACE YOUR BETS - "));
-          dispatch(toggle(true));
-        }, 7000);
-      }, 3000);
-      return;
-    } else {
-      const intervalId = setInterval(() => {
-        dispatch(Timelimit(timer - 1));
-      }, 1000);
-      return () => clearInterval(intervalId);
+      const t2 = setTimeout(() => {
+        dispatch(msg("RESULT"));
+        const newNumber = Math.floor(Math.random() * 37);
+        setN(newNumber);
+        dispatch(set_bethistory(newNumber));
+
+        const t3 = setTimeout(() => {
+          if (arraybet.some((bet) => bet.num === newNumber)) {
+            dispatch(msg("YOU WON"));
+          } else {
+            dispatch(msg("YOU LOSE"));
+          }
+        }, 3000);
+        t.push(t3);
+      }, 15000);
+      t.push(t2);
+
+      const t4 = setTimeout(() => {
+        dispatch(Timelimit(10));
+        dispatch(msg("PLACE YOUR BETS - "));
+        dispatch(toggle(true));
+      }, 26000);
+      t.push(t4);
     }
+    return () => {
+      t.forEach(clearTimeout);
+    };
   }, [timer]);
 
   const getTimerColor = () => {
